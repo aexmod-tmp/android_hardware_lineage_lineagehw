@@ -17,10 +17,10 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-#ifneq ($(BOARD_HARDWARE_CLASS),)
-#    $(foreach bcp, $(BOARD_HARDWARE_CLASS), \
-#        $(eval BOARD_SRC_FILES += $(call all-java-files-under, ../../../$(bcp))))
-#endif
+ifneq ($(BOARD_HARDWARE_CLASS),)
+    $(foreach bcp, $(BOARD_HARDWARE_CLASS), \
+        $(eval BOARD_SRC_FILES += $(call all-java-files-under, ../../../$(bcp))))
+endif
 
 BASE_SRC_FILES += $(call all-java-files-under, src/)
 
@@ -48,9 +48,9 @@ LOCAL_JAVA_LIBRARIES := com.github.aexmod
 LOCAL_STATIC_JAVA_LIBRARIES := vendor.lineage.livedisplay-V1.0-java-static
 
 LOCAL_CERTIFICATE := platform
-LOCAL_PRIVILEGED_MODULE := true
+#LOCAL_PRIVILEGED_MODULE := true
 
-include $(BUILD_LIBRARY)
+include $(BUILD_JAVA_LIBRARY)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
